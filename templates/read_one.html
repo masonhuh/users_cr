@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>read one user</title>
+</head>
+<body>
+    <div>
+    <h1>User {{user.id}}</h1><a href="/users">Home</a>
+    <form action="/users/{{user.id}}" method="POST">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Created at</th>
+                    <th>Updated at</th>
+                </tr>
+            </thead>
+        </table>
+        <tbody>
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.first_name }}</td>
+                    <td>{{ user.last_name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.created_at }}</td>
+                    <td>{{ user.updated_at }}</td>
+                </tr>
+        </tbody>
+    </form>
+    <br><br>
+    <p><a href="/users/{{user.id}}/edit">Edit</a>|<a href="/users/{{us}}/delete">Delete</a></p>
+    </div>
+</body>
+</html>

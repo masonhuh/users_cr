@@ -11,7 +11,7 @@ class User:
         self.updated_at = data['updated_at']
     # Now we use class methods to query our database
     @classmethod
-    def get_all(cls):
+    def get_all_users(cls):
         query = "SELECT * FROM users;"
         # make sure to call the connectToMySQL function with the schema you are targeting.
         results = connectToMySQL('users_schema').query_db(query)
@@ -27,3 +27,24 @@ class User:
         query = "INSERT INTO users ( first_name , last_name , email , created_at, updated_at ) VALUES ( %(fname)s , %(lname)s , %(email)s , NOW() , NOW() );"
         # data is a dictionary that will be passed into the save method from server.py
         return connectToMySQL('users_schema').query_db( query, data )
+
+    @classmethod
+    def get_user_by_id(cls, data):
+        query = "SELECT * FROM users WHERE id = %(id)s;"
+        result = connectToMySQL('users_schema').query_db(query, data)
+        print(result)
+        user = cls(result[0])
+        return user
+      
+    @classmethod
+    def update(cls, data):
+        query = "UPDATE users SET first_name = %(fname)s, last_name = %(lname)s, email = %(email)s WHERE id = %(id)s;"
+        return connectToMySQL('users_schema').query_db(query, data)
+
+    @classmethod
+    def delete(cls, data):
+        query = "DELETE FROM users WHERE users.id = %(id)s;"
+        return connectToMySQL('users_schema').query_db(query, data)
+
+
+

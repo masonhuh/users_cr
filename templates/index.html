@@ -15,6 +15,7 @@
                 <th>Full Name</th>
                 <th>Email</th>
                 <th>Created At</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -24,6 +25,7 @@
                     <th>{{ one_user.first_name }} {{ one_user.last_name }}</th>
                     <th>{{ one_user.email }}</th>
                     <th>{{ one_user.created_at }}</th>
+                    <th><a href="users/{{one_user.id}}">Show</a>|<a href="/users/{{one_user.id}}/edit">Edit</a>|<a href="/users/{{one_user.id}}/delete">Delete</a></th>
                 </tr>
             {% endfor %}
         </tbody>
